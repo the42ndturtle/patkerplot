@@ -8,6 +8,11 @@ const data = {
   options: fullOptions,
   selects: fullSelects,
   rawDataMode: false,
+  useMinAndMax: false,
+  minAndMax: {
+    min: 0,
+    max: 9,
+  }
 }
 
 String.prototype.replaceAll = function(search, replacement) {
@@ -110,7 +115,7 @@ const methods = {
     });
     labels.reverse();
     if(type == 'labels'){
-      return labels;
+      return methods.bucketify(labels);
     }
     else{
       return datasets;
@@ -118,6 +123,14 @@ const methods = {
   },
   makeArray(string){
     return string.replace('\n',',');
+  },
+  bucketify(labels){
+    const newLabels = [];
+    for(let i = 0; i < labels.length-1; i++){
+      newLabels.push(`${labels[i]}-${labels[i+1]}`);
+    }
+    newLabels.push(`${labels[labels.length-1]}+`);
+    return newLabels;
   },
 }
 

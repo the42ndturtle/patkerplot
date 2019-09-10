@@ -1,5 +1,5 @@
 Vue.component('chart', {
-  props: ['datasets', 'options', 'datasetoptions', 'mode'],
+  props: ['datasets', 'options', 'datasetoptions', 'mode', 'useminandmax'],
   methods: {
     makeChart(data){
       const self = this;
@@ -16,20 +16,34 @@ Vue.component('chart', {
       const options = this.options;
       const thisDatasets = [];
       let thisLabels;
+      if(!this.useminandmax){
+        this.options.scales.yAxes.forEach(option => {
+          delete option.ticks.min;
+          delete option.ticks.max;
+        });
+      }
+      else{
+        this.options.scales.yAxes.forEach(option => {
+          option.ticks.max = 9;
+          option.ticks.min = 0;
+        });
+    }
       if(this.mode){
+        this.options.type = 'bar';
         computed.rawDataAdjusted().forEach(element => {
           thisDatasets.push({data: element});
         });
         console.log(thisDatasets, computed.rawDataAdjusted());
         thisLabels = computed.rawDataLabels();
-        
       }
       else{
+        this.options.type = 'line';
         thisLabels = this.options.labels;
         this.datasets.forEach((data, index) => {
           thisDatasets.push({data: data});
         });
       }
+      console.log(this.options);
       this.datasetoptions.forEach((option, index) => {
         thisDatasets[Object.keys(thisDatasets)[index]] = {...thisDatasets[Object.keys(thisDatasets)[index]], ...option}
       });

@@ -36,7 +36,7 @@
               <i class="fas fa-download mr-1"></i>
               <span>Download chart</span>
             </button>
-            <chart :datasets="datasets" :datasetoptions="datasetOptions" :options="options" :mode="rawDataMode"></chart>
+            <chart :datasets="datasets" :datasetoptions="datasetOptions" :options="options" :mode="rawDataMode" :useminandmax="useMinAndMax"></chart>
           </div>
         </div>
         <div class="card" v-else-if="tab == 'data'">
@@ -46,6 +46,8 @@
             <button type="button" class="btn btn-outline-danger" @click="removeDataset()">Remove dataset</button>
             <label>Raw data mode</label>
             <input class="" type="checkbox" v-model="rawDataMode" />
+            <label>Use scale min and max</label>
+            <input class="" type="checkbox" v-model="useMinAndMax" />
           </div>
         </div>
         <div class="card" v-else>

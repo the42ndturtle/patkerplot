@@ -75,14 +75,15 @@ const fullOptions = {
       display: true,
     },
     yAxes: [{
-      // type: 'linear',
       display: true,
-      // position: 'left'
+      ticks: {
+        beginAtZero: false,
+        min: 0,
+        max: 9,
+      }
     }],
     xAxes: [{
-      // type: 'linear',
       display: true,
-      // position: 'left'
     }]
   },
   background: {
@@ -121,8 +122,8 @@ const fullDatasetOptions = {
     borderColor: 'rgba(0, 0, 0, 0.1)',
     borderSkipped: 'bottom',
     borderWidth: 0,
-    hoverBackgroundColor: '',
-    hoverBorderColor: '',
+    hoverBackgroundColor: 'rgba(0, 0, 0, 0.2)',
+    hoverBorderColor: 'rgba(0, 0, 0, 0.2)',
     label: '',
   },
   radar: {
