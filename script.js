@@ -96,7 +96,7 @@ const methods = {
     const datasets = [];
     const biggestNum = Math.max(...computed.largestDataset())
     for(let i = 1; i <= numBuckets; i++){
-      labels.push(Math.round(smallestNum +(((1/numBuckets) * (biggestNum-smallestNum))*i)))
+      labels.push(Math.floor(smallestNum +(((1/numBuckets) * (biggestNum-smallestNum))*i)))
     }
     data.datasets.forEach(dataset => {
       const newSet = [];
@@ -105,6 +105,7 @@ const methods = {
       dataset.forEach(elem => {
         let done = false;
         labels.forEach((label, index) => {
+          console.log(elem, label, elem >= label && !done);
           if(elem >= label && !done){
             newSet[index]++;
             done = true;
@@ -118,6 +119,7 @@ const methods = {
       return methods.bucketify(labels);
     }
     else{
+      console.log(datasets);
       return datasets;
     }
   },

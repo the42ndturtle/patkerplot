@@ -30,20 +30,20 @@ Vue.component('chart', {
     }
       if(this.mode){
         this.options.type = 'bar';
+        methods.changeChartType('bar');
         computed.rawDataAdjusted().forEach(element => {
           thisDatasets.push({data: element});
         });
-        console.log(thisDatasets, computed.rawDataAdjusted());
         thisLabels = computed.rawDataLabels();
       }
       else{
         this.options.type = 'line';
+        methods.changeChartType('line');
         thisLabels = this.options.labels;
         this.datasets.forEach((data, index) => {
           thisDatasets.push({data: data});
         });
       }
-      console.log(this.options);
       this.datasetoptions.forEach((option, index) => {
         thisDatasets[Object.keys(thisDatasets)[index]] = {...thisDatasets[Object.keys(thisDatasets)[index]], ...option}
       });
