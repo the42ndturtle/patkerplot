@@ -67,7 +67,8 @@ const methods = {
   saveChart(){
     const canvas = document.getElementById("chart");
     canvas.toBlob(function(blob) {
-      saveAs(blob, `${data.options.title.text}.png`);
+      if(data.options.title.text.replace(' ', '') != "") saveAs(blob, `${data.options.title.text}.png`);
+      else saveAs(blob, `chart.png`);
     });
   },
 }

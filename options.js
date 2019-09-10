@@ -30,7 +30,7 @@ const fullOptions = {
     enabled: true,
     mode: 'nearest',
     intersect: true,
-    position: 'average',
+    // position: 'average',
     backgroundColor: 'rgba(0, 0, 0, 0.8)',
     titleFontFamily: 'Arial',
     titleFontSize: 12,
@@ -180,11 +180,22 @@ const fullDatasetOptions = {
   },
 
 }
-fullDatasetOptions.doughnut = fullDatasetOptions.pie
-fullDatasetOptions.scatter = fullDatasetOptions.line,
+fullDatasetOptions.doughnut = fullDatasetOptions.pie;
+fullDatasetOptions.scatter = fullDatasetOptions.line;
 
 
 const fullSelects = {
   type: ['line', 'bar', 'radar', 'pie', 'doughnut', 'polarArea', 'bubble', 'scatter'],
-  
+  pointStyle: ['circle', 'cross', 'crossRot', 'dash', 'line', 'rect', 'rectRounded', 'rectRot', 'star', 'triangle'],
+  borderJoinStyle: ['miter', 'bevel', 'round'],
+  borderCapStyle: ['butt', 'round', 'square'],
+  borderSkipped: ['bottom', 'left', 'top', 'right'],
+  borderAlign: ['center', 'left', 'right'],
+  position: ['top', 'bottom', 'left', 'right'],
+  mode: ['nearest', 'average'],
+  fontStyle: ['bold', 'italic', 'normal'],
 }
+
+fullSelects.titleFontStyle = fullSelects.fontStyle;
+fullSelects.bodyFontStyle = fullSelects.fontStyle;
+fullSelects.footerFontStyle = fullSelects.fontStyle;
