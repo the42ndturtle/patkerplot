@@ -105,7 +105,6 @@ const methods = {
       dataset.forEach(elem => {
         let done = false;
         labels.forEach((label, index) => {
-          console.log(elem, label, elem >= label && !done);
           if(elem >= label && !done){
             newSet[index]++;
             done = true;
@@ -119,7 +118,6 @@ const methods = {
       return methods.bucketify(labels);
     }
     else{
-      console.log(datasets);
       return datasets;
     }
   },
@@ -131,7 +129,8 @@ const methods = {
     for(let i = 0; i < labels.length-1; i++){
       newLabels.push(`${labels[i]}-${labels[i+1]}`);
     }
-    newLabels.push(`${labels[labels.length-1]}+`);
+    const step = Math.abs(eval(newLabels[0]));
+    newLabels.push(`${labels[labels.length-1]}-${labels[labels.length-1] + step}`);
     return newLabels;
   },
 }
