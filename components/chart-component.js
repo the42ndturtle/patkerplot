@@ -1,5 +1,5 @@
 Vue.component('chart', {
-  props: ['datasets', 'options', 'datasetoptions'],
+  props: ['datasets', 'options', 'datasetoptions', 'mode'],
   methods: {
     makeChart(data){
       const self = this;
@@ -13,19 +13,30 @@ Vue.component('chart', {
           ctx.restore();
         }
       });
-
       const options = this.options;
       const thisDatasets = [];
-      this.datasets.forEach((data, index) => {
-        thisDatasets.push({data: data});
-      });
+      let thisLabels;
+      if(this.mode){
+        computed.rawDataAdjusted().forEach(element => {
+          thisDatasets.push({data: element});
+        });
+        console.log(thisDatasets, computed.rawDataAdjusted());
+        thisLabels = computed.rawDataLabels();
+        
+      }
+      else{
+        thisLabels = this.options.labels;
+        this.datasets.forEach((data, index) => {
+          thisDatasets.push({data: data});
+        });
+      }
       this.datasetoptions.forEach((option, index) => {
         thisDatasets[Object.keys(thisDatasets)[index]] = {...thisDatasets[Object.keys(thisDatasets)[index]], ...option}
       });
       new Chart(document.getElementById('chart'), {
         type: this.options.type,
           data: {
-            labels: this.options.labels,
+            labels: thisLabels,
             datasets: thisDatasets,
           },
           options: options,

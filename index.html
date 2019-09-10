@@ -36,12 +36,17 @@
               <i class="fas fa-download mr-1"></i>
               <span>Download chart</span>
             </button>
-            <chart :datasets="datasets" :datasetoptions="datasetOptions" :options="options"></chart>
+            <chart :datasets="datasets" :datasetoptions="datasetOptions" :options="options" :mode="rawDataMode"></chart>
           </div>
         </div>
         <div class="card" v-else-if="tab == 'data'">
           <dataset v-for="(data, index) in datasets" :data="data" :index="index"></dataset>
-          <button type="button" class="btn btn-outline-primary" @click="addDataset()">Add new dataset</button>
+          <div>
+            <button type="button" class="btn btn-outline-primary" @click="addDataset()">Add new dataset</button>
+            <button type="button" class="btn btn-outline-danger" @click="removeDataset()">Remove dataset</button>
+            <label>Raw data mode</label>
+            <input class="" type="checkbox" v-model="rawDataMode" />
+          </div>
         </div>
         <div class="card" v-else>
           <inputgroup :data="options" :path="new Array()" datakey="options" :selects="selects"></inputgroup>

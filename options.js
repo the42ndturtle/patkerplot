@@ -71,6 +71,9 @@ const fullOptions = {
     hoverBorderWidth: 1,
   },
   scales: {
+    scaleLabel: {
+      display: true,
+    },
     yAxes: [{
       // type: 'linear',
       display: true,
