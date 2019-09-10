@@ -1,9 +1,5 @@
 const fullOptions = {
   type: 'line',
-  // animation: {
-  //   duration: 1000,
-  //   easing: 'easeOutQueart',
-  // },
   labels: ['2014', '2015', '2016', '2017', '2018', '2019'],
   layout: {
     padding: {
@@ -67,9 +63,9 @@ const fullOptions = {
     radius: 3,
     pointStyle: 'circle',
     rotation: 0,
-    backgroundColor: 'rgba(0, 0, 0, .1)',
+    backgroundColor: '',
     borderWidth: 1,
-    borderColor: 'rgba(0, 0, 0, .1)',
+    borderColor: '',
     hitRadius: 1,
     hoverRadius: 4,
     hoverBorderWidth: 1,
@@ -85,26 +81,29 @@ const fullOptions = {
       display: true,
       // position: 'left'
     }]
+  },
+  background: {
+    color: 'transparent',
   }
 }
 
 const fullDatasetOptions = {
   line: {
-    backgroundColor: 'rgba(0, 0, 0, .1)',
+    backgroundColor: '',
     borderCapStyle: 'butt',
-    borderColor: 'rgba(0, 0, 0, .1)',
+    borderColor: '',
     borderJoinStyle: 'miter',
     borderWidth: 3,
     cubicInterpolationMode: '',
     fill: true,
     label: '',
     lineTension: .4,
-    pointBackgroundColor: 'rgba(0, 0, 0, .1)',
-    pointBorderColor: 'rgba(0, 0, 0, .1)',
+    pointBackgroundColor: '',
+    pointBorderColor: '',
     pointBorderWidth: 1,
     pointBorderRadius: 1,
-    pointHoverBackgroundColor: undefined,
-    pointHoverBorderColor: undefined,
+    pointHoverBackgroundColor: '',
+    pointHoverBorderColor: '',
     pointHoverBorderWidth: 1,
     pointHoverRadius: 4,
     pointRadius: 3,
@@ -113,5 +112,79 @@ const fullDatasetOptions = {
     showLine: true,
     spanGaps: true,
     steppedLine: false,
-  }
+  },
+  bar: {
+    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+    borderColor: 'rgba(0, 0, 0, 0.1)',
+    borderSkipped: 'bottom',
+    borderWidth: 0,
+    hoverBackgroundColor: '',
+    hoverBorderColor: '',
+    label: '',
+  },
+  radar: {
+    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+    borderCapStyle: 'butt',
+    borderColor: 'rgba(0, 0, 0, 0.1)',
+    borderDash: [0],
+    borderDashOffset: 0.0,
+    borderJoinStyle: 'miter',
+    borderWidth: 3,
+    fill: true,
+    label: '',
+    lineTension: 0.4,
+    pointBackgroundColor: 'rgba(0, 0, 0, 0.1)',
+    pointBorderColor: 'rgba(0, 0, 0, 0.1)',
+    pointBorderWidth: 1,
+    pointHitRadius: 1,
+    pointHoverBackgroundColor: '',
+    pointHoverBorderColor: '',
+    pointHoverBorderWidth: 1,
+    pointHoverRadius: 4,
+    pointRadius: 3,
+    pointRotation: 0,
+    pointStyle: 'circle'
+  },
+  pie: {
+    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+    borderAlign: 'center',
+    borderColor: '#fff',
+    borderWidth: 2,
+    hoverBackgroundColor: '',
+    hoverBorderColor: '',
+    hoverBorderWidth: '',
+    weight: 1,
+  },
+  polarArea: {
+    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+    borderAlign: 'center',
+    borderColor: '#fff',
+    borderWidth: 2,
+    hoverBackgroundColor: '',
+    hoverBorderColro: '',
+    hoverBorderWidth: '',
+  },
+  bubble: {
+    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+    borderColor: 'rgba(0, 0, 0, 0.1)',
+    borderWidth: 3,
+    hoverBackgroundColor: '',
+    hoverBorderColor: '',
+    hoverBorderWidth: 1,
+    hoverRadius: 4,
+    hitRadius: 1,
+    label: '',
+    pointStyle: 'circle',
+    rotation: 0,
+    radius: 3,
+  },
+
+}
+fullDatasetOptions.doughnut = fullDatasetOptions.pie
+fullDatasetOptions.scatter = fullDatasetOptions.line,
+
+
+const fullSelects = {
+  type: ['line', 'bar', 'radar', 'pie', 'doughnut', 'polarArea', 'bubble', 'scatter'],
+  
 }

@@ -6,6 +6,7 @@ const data = {
   ],
   datasetOptions: [fullDatasetOptions.line],
   options: fullOptions,
+  selects: fullSelects,
 }
 
 function getKeys(object) {
@@ -41,8 +42,11 @@ const methods = {
   handleDataset(index, dataset){
     data.datasets[index] = eval(`[${dataset}]`);
   },
-  changeChartType(){
-
+  changeChartType(type){
+    data.datasetOptions = [],
+    data.datasets.forEach(dataset => {
+      data.datasetOptions.push(fullDatasetOptions[type]);
+    });
   },
   addDataset(){
     data.datasets.push([]);
@@ -54,11 +58,23 @@ const methods = {
   },
   addElement(path){
     const string = 'data["' + path.join('"]["') + '"]';
-    eval(`${string}.push(0)`);
+    eval(`${string}.push(${string}[${string}.length-1])`);
   },
   removeElement(path){
     const string = 'data["' + path.join('"]["') + '"]';
     eval(`${string} = ${string}.splice(0, ${string}.length-1)`);
+  },
+  saveChart(){
+    const canvas = document.getElementById("chart");
+    canvas.toBlob(function(blob) {
+      saveAs(blob, `${data.options.title.text}.png`);
+    });
+  },
+}
+
+const watch = {
+  'options.type': function(val){
+    methods.changeChartType(val);
   }
 }
 
@@ -66,4 +82,5 @@ const vm = new Vue({
   el: '#app',
   data: data,
   methods: methods,
+  watch: watch,
 });

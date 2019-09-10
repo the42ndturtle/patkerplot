@@ -1,5 +1,5 @@
 Vue.component('inputgroup', {
-  props: ['append', 'prepend', 'type', 'datakey', 'index', 'data', 'path', 'options'],
+  props: ['append', 'prepend', 'type', 'datakey', 'index', 'data', 'path', 'options', 'selects'],
   model: {
     event: 'change'
   },
@@ -42,7 +42,17 @@ Vue.component('inputgroup', {
       <div class="input-group-prepend">
         <span class="input-group-text">{{datakey}}</span>
       </div>
+      <select
+      v-if="Object.keys(selects).indexOf(datakey) != -1"
+      @input="handle(newPath, $event.target.value, 'string')"
+      :value="data"
+      class="custom-select">
+        <option v-for="option in selects[datakey]">
+          {{option}}
+        </option>
+      </select>
       <input
+        v-else
         class="form-control"
         :type="(typeof(data) == 'boolean')? 'checkbox': 'text'"
         :debug="typeof(data)"
@@ -71,11 +81,13 @@ Vue.component('inputgroup', {
       <div :id="(datakey.constructor.name == 'Number'? path.join(''): '') + datakey" :class="(datakey == 'options'? 'show': '') + ' panel-collapse collapse'">
         <div class="card-body">
           <inputgroup
+          class="m-1"
           v-for="(option, key, index) in data"
           :datakey="key"
           :index="index"
           :data="option"
           :path="newPath"
+          :selects="selects"
           ></inputgroup>
           <div v-if="data.constructor.name == 'Array'">
             <button type="button" class="btn btn-success" @click="addElement(newPath)">

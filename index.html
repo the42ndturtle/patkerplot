@@ -32,6 +32,10 @@
         </ul>
         <div class="card" v-if="tab == 'chart'">
           <div class="card-body">
+            <button type="button" class="btn btn-success float-right" @click="saveChart()">
+              <i class="fas fa-download mr-1"></i>
+              <span>Download chart</span>
+            </button>
             <chart :datasets="datasets" :datasetoptions="datasetOptions" :options="options"></chart>
           </div>
         </div>
@@ -40,8 +44,8 @@
           <button type="button" class="btn btn-outline-primary" @click="addDataset()">Add new dataset</button>
         </div>
         <div class="card" v-else>
-          <inputgroup :data="options" :path="new Array()" datakey="options"></inputgroup>
-          <inputgroup :data="datasetOptions" :path="new Array()" datakey="datasetOptions"></inputgroup>
+          <inputgroup :data="options" :path="new Array()" datakey="options" :selects="selects"></inputgroup>
+          <inputgroup :data="datasetOptions" :path="new Array()" datakey="datasetOptions" :selects="selects"></inputgroup>
         </div>
       </div>
     </div>
@@ -55,6 +59,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
     <script src="components/chart-component.js"></script>
     <script src="options.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.2/dist/FileSaver.min.js"></script>
     <script src="script.js"></script>
     <script src="components/dataset-component.js"></script>
     <script src="components/inputgroup-component.js"></script>

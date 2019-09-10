@@ -2,6 +2,18 @@ Vue.component('chart', {
   props: ['datasets', 'options', 'datasetoptions'],
   methods: {
     makeChart(data){
+      const self = this;
+      Chart.pluginService.register({
+        beforeDraw: function (chart, easing) {
+          var ctx = chart.chart.ctx;
+          var chartArea = chart.chartArea;
+          ctx.save();
+          ctx.fillStyle = self.options.background.color;
+          ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+          ctx.restore();
+        }
+      });
+
       const options = this.options;
       const thisDatasets = [];
       this.datasets.forEach((data, index) => {
