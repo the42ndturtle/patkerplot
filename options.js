@@ -93,9 +93,9 @@ const fullOptions = {
 
 const fullDatasetOptions = {
   line: {
-    backgroundColor: '',
+    backgroundColor: 'rgba(0, 0, 0, 0.1)',
     borderCapStyle: 'butt',
-    borderColor: '',
+    borderColor: 'rgba(0, 0, 0, 0.1)',
     borderJoinStyle: 'miter',
     borderWidth: 3,
     cubicInterpolationMode: '',
