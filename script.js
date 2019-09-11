@@ -168,10 +168,12 @@ const methods = {
     return result;
   },
   q1(dataset){
-    return methods.quartile(dataset, 25);
+    // return methods.quartile(dataset, 25);
+    return numbers.statistic.quantile(dataset, 1, 4);
   },
   q3(dataset){
-    return methods.quartile(dataset, 75);
+    // return methods.quartile(dataset, 75);
+    return numbers.statistic.quantile(dataset, 3, 4);
   }
 }
 
