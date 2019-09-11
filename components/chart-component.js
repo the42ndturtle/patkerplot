@@ -29,7 +29,6 @@ Vue.component('chart', {
         });
     }
       if(this.mode){
-        this.options.type = 'bar';
         methods.changeChartType('bar');
         computed.rawDataAdjusted().forEach(element => {
           thisDatasets.push({data: element});
@@ -37,7 +36,6 @@ Vue.component('chart', {
         thisLabels = computed.rawDataLabels();
       }
       else{
-        this.options.type = 'line';
         methods.changeChartType('line');
         thisLabels = this.options.labels;
         this.datasets.forEach((data, index) => {
