@@ -38,6 +38,52 @@
               <span>Download chart</span>
             </button>
             <chart :datasets="datasets" :datasetoptions="datasetOptions" :options="options" :mode="rawDataMode" :useminandmax="useMinAndMax"></chart>
+            <div class="card" v-if="rawDataMode">
+              <div class="card-header">
+                <h2>Data Summary</h2>
+              </div>
+              <div class="card-body" v-for="(dataset, index) in datasets">
+                <h3>Dataset #{{index}}</h3>
+                <table>
+                  <tr>
+                    <th>Statistic</th>
+                    <th>Value</th>
+                  </tr>
+                  <tr>
+                    <td>Sample Size:</td>
+                    <td>{{dataset.length}}</td>
+                  </tr>
+                  <tr>
+                    <td>Mean:</td>
+                    <td>{{average(dataset)}}</td>
+                  </tr>
+                  <tr>
+                    <td>Standard Deviation:</td>
+                    <td>{{standardDeviation(dataset)}}</td>
+                  </tr>
+                  <tr>
+                    <td>Minimum:</td>
+                    <td>{{minimum(dataset)}}</td>
+                  </tr>
+                  <tr>
+                    <td>Q1:</td>
+                    <td>{{q1(dataset)}}</td>
+                  </tr>
+                  <tr>
+                    <td>Median:</td>
+                    <td>{{median(dataset)}}</td>
+                  </tr>
+                  <tr>
+                    <td>Q3:</td>
+                    <td>{{q3(dataset)}}</td>
+                  </tr>
+                  <tr>
+                    <td>Maximum:</td>
+                    <td>{{maximum(dataset)}}</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
         <div class="card" v-else-if="tab == 'data'">

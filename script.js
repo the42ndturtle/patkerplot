@@ -133,6 +133,46 @@ const methods = {
     newLabels.push(`${labels[labels.length-1]}-${labels[labels.length-1] + step}`);
     return newLabels;
   },
+  average(dataset){
+    const sum = dataset => dataset.reduce((a,b) => a + b, 0);
+    return sum(dataset)/dataset.length;
+  },
+  standardDeviation(dataset){
+    const avg = methods.average(dataset);
+    const squareDiff = dataset.map(function(value){
+      return (value - avg)**2;
+    });
+    return Math.sqrt(methods.average(squareDiff));
+  },
+  minimum(dataset){
+    return Math.min(...dataset);
+  },
+  maximum(dataset){
+    return Math.max(...dataset);
+  },
+  median(dataset){
+    const mid = Math.floor(dataset.length / 2)
+    const nums = [...dataset].sort((a, b) => a - b);
+    return dataset.length % 2 !== 0 ? nums[mid] : (nums[mid - 1] + nums[mid]) / 2;
+  },
+  quartile(dataset, percentile) {
+    dataset.sort((a, b) => (b.length - a.length));
+    var index = (percentile/100) * dataset.length;
+    var result;
+    if (Math.floor(index) == index) {
+         result = (dataset[(index-1)] + dataset[index])/2;
+    }
+    else {
+        result = dataset[Math.floor(index)];
+    }
+    return result;
+  },
+  q1(dataset){
+    return methods.quartile(dataset, 25);
+  },
+  q3(dataset){
+    return methods.quartile(dataset, 75);
+  }
 }
 
 const computed = {
